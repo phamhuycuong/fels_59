@@ -7,12 +7,15 @@
   </div>
   <div class="col-md-2">
     <%= I18n.t "word.sort_by" %>
-    <%= select_tag "sort_by", options_for_select(Settings.word.sort_by_list, params[:sort_by]) %>
+    <% sort_by_list = [[(I18n.t "word.id"), Settings.word.id], [(I18n.t "word.alphabet"), Settings.word.alphabet]] %>
+    <%= select_tag "sort_by", options_for_select(sort_by_list, params[:sort_by]) %>
   </div>
-  <% Settings.word.radio_button_array_show.each_with_index do |radio_button, index| %>
+  <% radio_button_array_show = [I18n.t("word.passed"), I18n.t("word.learned"), I18n.t("word.unlearned"), I18n.t("word.all")] %>
+  <% radio_button_array_var = [Settings.word.passed, Settings.word.learned, Settings.word.unlearned, Settings.word.all] %>
+  <% radio_button_array_show.each_with_index do |radio_button, index| %>
     <div class="col-md-1" align="center">
       <%= radio_button %>
-      <%= radio_button_tag("learn", Settings.word.radio_button_array_var[index], checked = (params[:learn] == Settings.word.radio_button_array_var[index]) || (params[:learn].blank?)) %>
+      <%= radio_button_tag("learn", radio_button_array_var[index], checked = (params[:learn] == radio_button_array_var[index]) || (params[:learn].blank?)) %>
     </div>
   <% end %>
 </div>

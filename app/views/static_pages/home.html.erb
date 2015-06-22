@@ -1,14 +1,12 @@
 <% if logged_in? && !current_user.admin? %>
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <br>
-      <table class="w100">
-        <tr>
-          <td width="50%"><%= button_to I18n.t(:word_list), words_path, class: "btn btn-primary btn-lg", method: :get %></td>
-          <td>&nbsp;&nbsp;</td>
-          <td width="50%"><%= button_to I18n.t(:start_lesson), categories_path, class: "btn btn-primary btn-lg", method: :get %></td>
-        </tr>
-      </table>
+    <div class="col-md-3">
+      <%= render "users/summary", user: current_user %>
+    </div>
+    <div class="col-md-9">
+      <%= render "shared/word_lesson_button" %>
+      <h3><%= t "user.lesson_act", count: @user.lessons.count %></h3>
+      <%= render "users/lesson", user: current_user %>
     </div>
   </div>
 <% end %>

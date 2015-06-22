@@ -37,6 +37,14 @@ class LessonsController < ApplicationController
     end
   end
 
+  def destroy
+    @lesson = Lesson.find params[:id]
+    @user = @lesson.user
+    @lesson.destroy
+    flash[:success] = I18n.t "lesson.destroy_success"
+    redirect_to @user
+  end
+
   private
   def lesson_params
     params.require(:lesson).permit lesson_words_attributes: [:id, :word_id, :answer_id]

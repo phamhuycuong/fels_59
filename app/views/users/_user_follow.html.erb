@@ -1,0 +1,15 @@
+<% if follows.any? %>
+  <table class="table table-hover w100">
+    <% follows.each do |follow| %>
+      <tr>
+        <td>
+          <%= link_to gravatar_for(follow, size: Settings.user.gravantar_size60), follow %>
+          <h4><%= follow.name.capitalize %></h4>
+          <em>
+            <%= t "user.lesson_word_infor", lesson_count: follow.lessons.count, words_count: Word.learned(follow).count, passed_count: Word.passed(follow).count %>
+          <em>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

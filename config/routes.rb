@@ -8,12 +8,20 @@ Rails.application.routes.draw do
 
   get "signup"  => "users#new"
 
-  resources :users
   resources :words
+  resources :users do
+    resources :following, only: [:show]
+    resources :followers, only: [:show]
+  end
+
+  get "/users/:id/following" => "users#index", as: "following"
+  get "/users/:id/followers" => "users#index", as: "followers"
 
   resources :categories do
     resources :lessons
   end
+
+  resources :relationships, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
