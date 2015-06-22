@@ -1,30 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    Category: <strong><%= Category.find(@word.category_id).title.capitalize %> </strong>
+    <%= I18n.t "word.category" %>&nbsp;<strong><%= word.category.title.capitalize %></strong>
     <hr>
-    <% if @word.answers.any? %>
-      <h1><%= I18n.t(:answer) %></h1>  
-      <% @word.answers.each_with_index do |a, index| %>
-        <table width="100%" border="0">
-          <tr valign="middle">
-            <td width="11%"><%= I18n.t(:option, index: (index + 1)) %></td>
-            <td width="55%" align="left"><strong>&nbsp;<%= a.content.capitalize %></strong></td>
-            <td align="right"><%= I18n.t(:correct) %>:&nbsp;&nbsp;</td>
-            <td width="6%"><strong><%= a.correct %></strong></td>
-          </tr>
-        </table>
-        <hr>
-      <% end %>
-    <% else %>
-      <%= I18n.t(:this_word_doesnt_have_any_answer) %>
-    <% end %>
-    <table width="100%">
-      <tr>
-        <td align="right">
-          <%= link_to I18n.t(:back_to_listing_words), words_path %> |
-          <%= link_to I18n.t(:edit), edit_word_path(@word)  %>
-        </td>
-      </tr>  
-    </table>
+    <% word.answers.any? ? I18n.t("word.this_word_have_answer", count: word.answers.count) : I18n.t(:this_word_doesnt_have_any_answer) %>
   </div>
 </div>

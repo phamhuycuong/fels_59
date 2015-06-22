@@ -7,4 +7,8 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+
+  def start_learn? category, user
+    category.words.unlearned(user).count > 0
+  end
 end

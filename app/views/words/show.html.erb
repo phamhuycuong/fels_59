@@ -1,2 +1,2 @@
 <h1><%= @word.content.capitalize %></h1>
-<%= render "show" %>
+<% current_user.admin? ? render("admin/word", word: @word) : render("show", word: @word) %>

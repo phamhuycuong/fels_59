@@ -10,9 +10,9 @@
     </tr>
     <tr>
       <td>
-        <em><%= I18n.t "general.totel_word", count: category.words.count %></em>
+        <em><%= I18n.t "general.total_word", count: category.words.count %></em>
         <% unless current_user.admin? %>
-          <em><%= I18n.t(:categories_you_have_learned) %></em>
+          <em><%= I18n.t :categories_you_have_learned, count: category.words.learned(current_user).count %></em>
         <% end %>
       </td>
       <td align="right">
@@ -22,7 +22,7 @@
           <%= link_to I18n.t(:destroy), category, method: :delete, data: {confirm: I18n.t(:are_you_sure)} %>
         <% else %>
           <em>
-            <%= link_to I18n.t(:categories_start_learn), category_lessons_path(category_id: category.id), method: :post %>
+            <%= link_to_if(start_learn?(category, current_user), I18n.t(:categories_start_learn), category_lessons_path(category_id: category.id), method: :post){} %>
           </em>
         <% end %>
       </td>
@@ -33,8 +33,6 @@
 <table class="w100">
   <tr>
     <td align="left"><%= will_paginate @categories, renderer: BootstrapPagination::Rails %></td>
-    <% if current_user.admin? %>
-      <td align="right"><%= link_to I18n.t(:new_category), new_category_path %></td>
-    <% end %>
+    <td align="right"><%= link_to_if(current_user.admin?, I18n.t(:new_category), new_category_path){}%></td>
   </tr>
 </table>
