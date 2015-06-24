@@ -10,17 +10,21 @@ class Word < ActiveRecord::Base
 
   validates :content, presence: true, uniqueness: true
 
-  user_learned = "id IN (SELECT word_id FROM lesson_words WHERE lesson_id IN (SELECT id FROM lessons WHERE user_id = %{idx}))"
-  scope :learned, ->user{where(user_learned % {idx: user.id})}
+  scope :learned, ->user{where(Settings.word.user_learned % {idx: user.id})}
 
-  user_unlearned = "id NOT IN (SELECT word_id FROM lesson_words WHERE lesson_id IN (SELECT id FROM lessons WHERE user_id = %{idx}))"
-  scope :unlearned, ->user{where(user_unlearned % {idx: user.id})}
+  scope :unlearned, ->user{where(Settings.word.user_unlearned % {idx: user.id})}
 
-  user_passed = "id IN (SELECT word_id FROM lesson_words WHERE ((lesson_id IN (SELECT id FROM lessons WHERE user_id = %{idx})) AND (answer_id IN (SELECT id FROM answers WHERE correct = 't'))))"
-  scope :passed, ->user{where(user_passed % {idx: user.id})}
+  scope :passed, ->user{where(Settings.word.user_passed % {idx: user.id})}
 
-  lesson_passed = "id IN (SELECT word_id FROM lesson_words WHERE ((lesson_id = %{lesson_id}) AND (answer_id IN (SELECT id FROM answers WHERE correct = 't'))))"
-  scope :lesson_passed, ->lesson{where(lesson_passed % {lesson_id: lesson.id})}
+  scope :lesson_passed, ->lesson{where(Settings.word.lesson_passed % {lesson_id: lesson.id})}
 
   scope :random_words, ->user{Word.unlearned(user).order("random()").limit(Settings.lesson_max_word)}
+
+  scope :get_all, ->user{}
+
+  scope :filter_category, ->category_id{where category_id: category_id if category_id.present?}
+
+  scope :filter_content, ->content{where Settings.word.filter_content % {content: content, chr37: "%"} if content.present?}
+
+  scope :order_by_alphabet, ->{order content: :ASC}
 end

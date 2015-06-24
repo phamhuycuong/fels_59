@@ -37,7 +37,7 @@ en:
   menu_login: "Log in"
   menu_logout: "Log out"
   menu_tool: "Tool"
-  menu_category: "Category"
+  menu_categories: "Categories"
   menu_lesson: "Lesson"
   menu_word: "Word"
   menu_user: "User"
@@ -55,7 +55,7 @@ en:
   category_success_updated: "Category was successfully updated."
   category_success_destroy: "Category was successfully destroy."
   categories_start_learn: "...Start learn"
-  categories_you_have_learned: "[You have learned ... words]"
+  categories_you_have_learned: "[You have learned %{count} words]"
 
   show: "Show"
   edit: "Edit"
@@ -109,5 +109,19 @@ en:
     error_input: "Error input"
     no_answer: "No answer!"
     start_learn: "Start learn!"
+
+  word:
+    category: "Category"
+    all: "All"
+    sort_by: "Sort by"
+    id: "Id"
+    passed: "Passed"
+    alphabet: "Alphabet content"
+    learned: "Learned"
+    unlearned: "UnLearned"
+    search: "Search"
+    content: "Content"
+    can_not_find_this_word: "Can not find this word!."
+    this_word_have_answer: "This word have %{count} answers."
 
   app_title: "Base App"

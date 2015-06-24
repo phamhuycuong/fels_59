@@ -4,7 +4,7 @@
       <br>
       <table class="w100">
         <tr>
-          <td width="50%"><%= button_to I18n.t(:word_list), "#", class: "btn btn-primary btn-lg" %></td>
+          <td width="50%"><%= button_to I18n.t(:word_list), words_path, class: "btn btn-primary btn-lg", method: :get %></td>
           <td>&nbsp;&nbsp;</td>
           <td width="50%"><%= button_to I18n.t(:start_lesson), categories_path, class: "btn btn-primary btn-lg", method: :get %></td>
         </tr>

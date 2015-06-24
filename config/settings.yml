@@ -4,3 +4,20 @@ user_password_min_long: 5
 words_paginate: 5
 categories_paginate: 5
 lesson_max_word: 2
+
+word:
+  user_learned: "id IN (SELECT word_id FROM lesson_words WHERE lesson_id IN (SELECT id FROM lessons WHERE user_id = %{idx}))"
+  user_unlearned: "id NOT IN (SELECT word_id FROM lesson_words WHERE lesson_id IN (SELECT id FROM lessons WHERE user_id = %{idx}))"
+  user_passed: "id IN (SELECT word_id FROM lesson_words WHERE ((lesson_id IN (SELECT id FROM lessons WHERE user_id = %{idx})) AND (answer_id IN (SELECT id FROM answers WHERE correct = 't'))))"
+  lesson_passed: "id IN (SELECT word_id FROM lesson_words WHERE ((lesson_id = %{lesson_id}) AND (answer_id IN (SELECT id FROM answers WHERE correct = 't'))))"
+  filter_content: "content LIKE '%{chr37}%{content}%{chr37}'"
+
+  id: "id"
+  alphabet: "alphabet"
+  sort_by_list: <%= [[(I18n.t "word.id"), Settings.word.id], [(I18n.t "word.alphabet"), Settings.word.alphabet]] %>
+  passed: "passed"
+  learned: "learned"
+  unlearned: "unlearned"
+  all: "get_all"
+  radio_button_array_show: <%= [I18n.t("word.passed"), I18n.t("word.learned"), I18n.t("word.unlearned"), I18n.t("word.all")] %>
+  radio_button_array_var: <%= [Settings.word.passed, Settings.word.learned, Settings.word.unlearned, Settings.word.all] %>

@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= I18n.t "word.category" %>:&nbsp;<strong><%= word.category.title.capitalize %> </strong>
+    <hr>
+    <% if word.answers.any? %>
+      <h1><%= I18n.t :answer %></h1>
+      <% word.answers.each_with_index do |answer, index| %>
+        <table class="w100">
+          <tr valign="middle">
+            <td width="11%"><%= I18n.t(:option, index: (index + 1)) %></td>
+            <td width="55%" align="left"><strong>&nbsp;<%= answer.content.capitalize %></strong></td>
+            <td align="right"><%= I18n.t :correct %>:&nbsp;&nbsp;</td>
+            <td width="6%"><strong><%= answer.correct %></strong></td>
+          </tr>
+        </table>
+        <hr>
+      <% end %>
+    <% else %>
+      <%= I18n.t :this_word_doesnt_have_any_answer %>
+    <% end %>
+    <table class="w100">
+      <tr>
+        <td align="right">
+          <%= link_to t(:back_to_listing_words), words_path %> |
+          <%= link_to t(:edit), edit_word_path(word) %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
