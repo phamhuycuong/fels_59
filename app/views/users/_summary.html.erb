@@ -1,0 +1,29 @@
+<%= gravatar_for user %>
+<h4><%= user.name.capitalize %></h4>
+<%= link_to t("user.view_my_profile"), user unless user == current_user %>
+<br><br><br>
+<table class="w100">
+  <tr>
+    <td><%= t "user.lessons", count: user.lessons.count %></td>
+    <td><%= t "user.learned", count: Word.learned(user).count %></td>
+    <td><%= t "user.passed", count: Word.passed(user).count %></td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="<%= friendship_path user, status: Settings.user.following %>">
+        <strong id="following" class="stat">
+          <%= t "user.following", count: user.following.count %>
+        </strong>
+      </a>
+    </td>
+    <td>
+      <a href="<%= friendship_path user, status: Settings.user.followers %>">
+        <strong id="followers" class="stat">
+          <%= t "user.followers", count: user.followers.count %>
+        </strong>
+      </a>
+    </td>
+  </tr>
+  <tr><td></td></tr>
+</table>
