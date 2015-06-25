@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render "users/summary", user: @user %>
+  </div>
+  <div class="col-md-9">
+    <%= @user == current_user ?  render("shared/word_lesson_button") : render("follow_form", user: @user) %>
+    <h3><%= t "user.lesson_act", count: @user.lessons.count %></h3>
+    <%= render "users/lesson", user: @user %>
+  </div>
+</div>
