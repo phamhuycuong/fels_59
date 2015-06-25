@@ -1,0 +1,9 @@
+<% if user.following.any? %>
+  <table class="table table-hover w100">
+    <% user.following.each do |following| %>
+      <tr>
+        <td><%= following.name.capitalize %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
