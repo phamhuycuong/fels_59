@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <h4><%= t "user.learned_lesson_in_category", category_title: lesson.category.title.capitalize %></h4>
+    <em>
+      <%= t "user.time_passed", time: time_ago_in_words(lesson.created_at), passed: lesson.category.words.lesson_passed(lesson).count  %>
+    </em>
+  </td>
+  <td align="right">
+    <h4>&nbsp;</h4>
+    <em>
+      <%= link_to_if current_user.admin?, t(:destroy), category_lesson_path(lesson, category_id: lesson.category.id), method: :delete, data: {confirm: t(:are_you_sure)}{} %>
+    </em>
+  </td>
+</tr>

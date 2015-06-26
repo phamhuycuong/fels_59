@@ -8,12 +8,16 @@ Rails.application.routes.draw do
 
   get "signup"  => "users#new"
 
-  resources :users
   resources :words
+  resources :users
 
   resources :categories do
     resources :lessons
   end
+
+  resources :relationships, only: [:index, :create, :destroy]
+
+  get "/users/:id/:status" => "relationships#index", as: "friendship"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
