@@ -1,9 +1,25 @@
 <% if current_user.admin? %>
   <%= render "admin/word_list", words: @words %>
 <% else %>
-  <%= form_for(words_path, method: "get") do |f| %>
+  <%= form_for words_path, method: "get" do |f| %>
     <h1><%= I18n.t :listing_words %></h1>
     <%= render "list_words_head", f: f %>
-    <%= render "words", words: @words if @words.any? %>
+    <% if @words.any? %>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+          <table class="table table-hover w100">
+            <tr>
+              <td width="5%"><strong><%= I18n.t "word.id" %></trong></td>
+              <td><strong><%= I18n.t "word.content" %></strong></td>
+            </tr>
+            <%= render @words %>
+            <tr><td colspan="2"></td></tr>
+          </table>
+          <%= will_paginate @words, renderer: BootstrapPagination::Rails %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

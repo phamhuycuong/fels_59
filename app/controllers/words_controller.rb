@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
   before_action :set_word, except: [:new, :index, :create]
+  before_action :check_login
 
   def index
     @words = Word.filter_category params[:category_id]

@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, except: [:new, :index, :create]
+  before_action :check_login
 
   def index
     @categories = Category.paginate page: params[:page], per_page: Settings.categories_paginate
@@ -18,7 +19,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new category_params
     if  @category.save
-      flash[:success] = I18n.t(:category_success_created)
+      flash[:success] = I18n.t :category_success_created
       redirect_to categories_path
     else
       render "new"
@@ -27,7 +28,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update category_params
-      flash[:success] = I18n.t(:category_success_updated)
+      flash[:success] = I18n.t :category_success_updated
       redirect_to categories_path
     else
       render "edit"
@@ -35,8 +36,12 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    flash[:success] = I18n.t(:category_success_destroy)
+    if @category.destroy
+      flash[:success] = I18n.t :category_success_destroy
+    else
+      flash[:danger] = I18n.t "category.destroy_error"
+    end
+
     redirect_to categories_path
   end
 
