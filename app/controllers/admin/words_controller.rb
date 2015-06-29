@@ -11,11 +11,13 @@ class Admin::WordsController < ApplicationController
 
   def new
     @word = Word.new
-    @word.answers.build
+    @count_answer = 0
+    Settings.word.max_answer.times{@word.answers.build}
   end
 
   def edit
-    @word.answers.build
+    @count_answer = @word.answers.count
+    (Settings.word.max_answer - @count_answer).times{@word.answers.build}
   end
 
   def create
