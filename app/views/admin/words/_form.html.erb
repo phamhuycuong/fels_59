@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for [:admin, @word] do |f| %>
+
+      <%= render "shared/error", object: f.object %>
+
+      <div class="field">
+        <%= f.label :content %>
+        <%= f.text_field :content, class: "form-control" %>
+
+        <%= f.label I18n.t(:menu_category) %>
+        <%= f.select(:category_id, Category.pluck(:title, :id), {}, {class: "form-control"}) %>
+      </div>
+      <h1><%= I18n.t(:answer) %></h1>
+
+      <%= render "form_answer", f: f %>
+
+      <div class="actions">
+        <%= f.submit I18n.t(:submit), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <br>
+    <div align="right">
+      <%= link_to I18n.t(:back_to_listing_words), admin_words_path %>
+    </div>
+  </div>
+</div>
