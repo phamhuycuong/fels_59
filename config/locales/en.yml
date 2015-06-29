@@ -40,7 +40,7 @@ en:
   menu_categories: "Categories"
   menu_lesson: "Lesson"
   menu_word: "Word"
-  menu_user: "User"
+  menu_users: "Users"
   sign_up: "Sign up"
   log_in: "Log in"
 
@@ -109,6 +109,7 @@ en:
     error_input: "Error input"
     no_answer: "No answer!"
     start_learn: "Start learn!"
+    destroy_success: "Lesson was successfully destroyed."
 
   word:
     category: "Category"
@@ -123,5 +124,26 @@ en:
     content: "Content"
     can_not_find_this_word: "Can not find this word!."
     this_word_have_answer: "This word have %{count} answers."
+
+  user:
+    update_success: "User was successfully updated."
+    destroy_success: "User was successfully destroyed."
+    edit_user: "Edit user"
+    learned_lesson_in_category: "Learned lesson in category %{category_title}."
+    time_passed: "%{time} ago, passed %{passed} word."
+    view_my_profile: "View my profile"
+    lessons: "Lessons (%{count})"
+    learned: "Learned (%{count})"
+    passed: "Passed  (%{count})"
+    following: "Following (%{count})"
+    followers: "Followers (%{count})"
+    lesson_word_infor: "Learned %{lesson_count} lessons with %{words_count} words, passed %{passed_count} words."
+    name: "Name"
+    id: "Id"
+    email: "Email"
+    change: "Change"
+    lesson_act: "Lesson Activities (%{count})"
+    follow: "Follow"
+    unfollow: "UnFollow"
 
   app_title: "Base App"

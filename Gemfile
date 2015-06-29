@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem "friendly_id", "~> 5.0.0"
+gem "faker"
 gem "jquery-turbolinks"
 gem "rails_config"
 gem "will_paginate-bootstrap"
