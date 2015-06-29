@@ -8,6 +8,13 @@ Rails.application.routes.draw do
 
   get "signup"  => "users#new"
 
+  namespace :admin do
+    root "dashbroads#home"
+    resources :categories
+    resources :words
+    resources :users
+  end
+
   resources :words
   resources :users
 

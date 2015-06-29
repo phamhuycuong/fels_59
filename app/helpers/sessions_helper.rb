@@ -19,4 +19,12 @@ module SessionsHelper
   def check_login
     redirect_to login_path unless logged_in?
   end
+
+  def check_login_admin
+    unless logged_in?
+      redirect_to login_path
+    else
+      redirect_to root_path unless current_user.admin?
+    end
+  end
 end
