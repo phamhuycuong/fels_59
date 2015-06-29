@@ -30,10 +30,13 @@ $(document).ready(function() {
         document.getElementById("answer"+this.id).style.display = "none";
       }
     });
+    document.getElementById(i.toString()).checked = false;
   };
 
   $( "#add").click(function() {
     numberMax = parseInt($('.answer_fields:visible:last').attr('number'));
+    document.getElementById((numberMax+1).toString()).checked = false;
+    document.getElementById("as"+(numberMax+1).toString()).value = "";
     document.getElementById("answer"+(numberMax+1).toString()).style.display = "";
   });
 

@@ -27,6 +27,6 @@
 <table class="w100">
   <tr>
     <td align="left"><%= will_paginate @categories, renderer: BootstrapPagination::Rails %></td>
-    <td align="right"><%= link_to current_user.admin?, I18n.t(:new_category), new_admin_category_path %></td>
+    <td align="right"><%= link_to I18n.t(:new_category), new_admin_category_path %></td>
   </tr>
 </table>

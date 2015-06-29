@@ -3,7 +3,7 @@
     <div class="field">
       <table class="w100">
         <tr valign="middle">
-          <td width="70%"><%= a.text_field :content, class: "form-control" %></td>
+          <td width="70%"><%= a.text_field :content, class: "form-control", id: "as"+(a.index).to_s %></td>
           <td width="12%"><strong>&nbsp;&nbsp;<%= I18n.t(:correct) %>:</strong></td>
           <td width="2%"><%= a.check_box :correct %></td>
           <td><strong>&nbsp;&nbsp;<%= I18n.t(:destroy) %>:</strong></td>
