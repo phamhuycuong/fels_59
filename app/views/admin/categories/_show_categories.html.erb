@@ -1,0 +1,32 @@
+<% @categories.each do |category| %>
+  <table class="w100">
+    <tr class="bg01">
+      <td colspan="2"><strong><h3>&nbsp;<%= category.title.capitalize %></h3></strong></td>
+    </tr>
+    <tr class="bg01">
+      <td colspan="2">
+        &nbsp;<%= render "shared/category_words", object: category %><br>&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <em><%= I18n.t "general.total_word", count: category.words.count %></em>
+        <% unless current_user.admin? %>
+          <em><%= I18n.t :categories_you_have_learned, count: category.words.learned(current_user).count %></em>
+        <% end %>
+      </td>
+      <td align="right">
+        <%= link_to I18n.t(:show), admin_category_path(category) %> |
+        <%= link_to I18n.t(:edit), edit_admin_category_path(category) %> |
+        <%= link_to I18n.t(:destroy), admin_category_path(category), method: :delete, data: {confirm: I18n.t(:are_you_sure)} %>
+      </td>
+    </tr>
+  </table>
+  <hr>
+<% end %>
+<table class="w100">
+  <tr>
+    <td align="left"><%= will_paginate @categories, renderer: BootstrapPagination::Rails %></td>
+    <td align="right"><%= link_to current_user.admin?, I18n.t(:new_category), new_admin_category_path %></td>
+  </tr>
+</table>
