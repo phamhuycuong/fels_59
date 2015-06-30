@@ -24,4 +24,17 @@ $(document).ready(function() {
     };
   });
 
+  for (var i = 0; i < 20; i++) {
+    $( "#"+i.toString()).click(function() {
+      if (this.checked) {
+        document.getElementById("answer"+this.id).style.display = "none";
+      }
+    });
+  };
+
+  $( "#add").click(function() {
+    numberMax = parseInt($('.answer_fields:visible:last').attr('number'));
+    document.getElementById("answer"+(numberMax+1).toString()).style.display = "";
+  });
+
 });

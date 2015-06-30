@@ -1,17 +1,16 @@
 <%= f.fields_for :answers do |a| %>
-  <div class="answer_fields">
+  <div class="answer_fields" id="answer<%= a.index %>" number="<%= a.index %>" style="display:<%= a.index > count_answer ? "none" : "" %>">
     <div class="field">
-      <table width="100%" border="0">
+      <table class="w100">
         <tr valign="middle">
-          <th><%= f.label I18n.t(:option, index: (a.index + 1)) %></th>
-          <td width="55%"><%= a.text_field :content, class: "form-control" %></td>
-          <td><strong>&nbsp;&nbsp;<%= I18n.t(:correct) %>:</strong></td>
-          <td><%= a.check_box :correct%></td>
-          <td><strong>&nbsp;&nbsp;<%= I18n.t(:remove) %>:</strong></td>
-          <td><%= a.check_box :_destroy%></td>
-         </tr>
+          <td width="70%"><%= a.text_field :content, class: "form-control" %></td>
+          <td width="12%"><strong>&nbsp;&nbsp;<%= I18n.t(:correct) %>:</strong></td>
+          <td width="2%"><%= a.check_box :correct %></td>
+          <td><strong>&nbsp;&nbsp;<%= I18n.t(:destroy) %>:</strong></td>
+          <td><%= a.check_box :_destroy, value: 0, id: (a.index).to_s %></td>
+        </tr>
+        <tr><td><hr></td></tr>
       </table>
-      <hr>
     </div>
   </div>
 <% end %>

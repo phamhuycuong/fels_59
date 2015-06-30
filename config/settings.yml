@@ -17,6 +17,7 @@ word:
   learned: "learned"
   unlearned: "unlearned"
   all: "get_all"
+  max_answer: 20
 
 user:
   gravantar_size90: 90
