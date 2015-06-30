@@ -1,0 +1,20 @@
+<h1><%= t "user.listing_users" %></h1>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8" align="center">
+    <% if @users.any? %>
+      <table class="table table-hover w100">
+        <tr>
+          <th width="5%"><%= t "user.id" %></th>
+          <th><%= t "user.name" %></th>
+          <th><%= t "user.email" %></th>
+          <td colspan="4"></td>
+        </tr>
+        <%= render @users %>
+        <tr><td colspan="4"></td></tr>
+      </table>
+    <% end %>
+    <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
